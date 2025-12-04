@@ -71,10 +71,9 @@ pipeline {
                         git remote -v
                         '''
                     }
-                }
             }
-
-        stage('Push to Repo')
+        }
+        stage('Push to Repo'){
             steps{
                 script{
                     withCredentials([usernamePassword(credentialsId: 'github', passwordVariable: 'GIT_PASSWORD', usernameVariable: 'GIT_USERNAME')]) {
