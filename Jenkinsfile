@@ -33,11 +33,22 @@ pipeline {
                     sh '''
                     echo 'Push to Repo'
                     docker push shubhamsonirg/cicd-e2e:${BUILD_NUMBER}
+                    docker push shubhamsonirg/cicd-e2e:latest
                     '''
                 }
             }
         }
-        
+        stage('Removing the Unused Images'){
+            steps{
+                script{
+                    sh '''
+                    echo "Removing the images"
+                    docker rmi shubhamsonirg/cicd-e2e:${BUILD_NUMBER}
+                    docker rmi shubhamsonirg/cicd-e2e:latest
+                    '''
+                }
+            }
+        }
         stage('Checkout K8S manifest SCM'){
             steps {
                 git credentialsId: 'github', 
