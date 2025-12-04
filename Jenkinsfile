@@ -22,6 +22,7 @@ pipeline {
                     sh '''
                     echo 'Buid Docker Image'
                     docker build -t shubhamsonirg/cicd-e2e:${BUILD_NUMBER} .
+                    docker image tag shubhamsonirg/cicd-e2e:${BUILD_NUMBER} shubhamsonirg/cicd-e2e:latest
                     '''
                 }
             }
