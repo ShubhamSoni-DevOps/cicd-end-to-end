@@ -71,6 +71,7 @@ pipeline {
                         git remote -v
                         '''
                     }
+                }
             }
         }
         stage('Push to Repo'){
