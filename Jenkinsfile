@@ -69,8 +69,12 @@ pipeline {
                         git add deploy.yaml
                         git commit -m 'Updated the deploy yaml | Jenkins Pipeline'
                         git remote -v
-                        git push origin main
-                        '''                        
+                        '''
+                    withCredentials([usernamePassword(credentialsId: 'github', passwordVariable: 'GIT_PASSWORD', usernameVariable: 'GIT_USERNAME')]) {
+                        sh '''
+                        git push https://github.com/ShubhamSoni-DevOps/cicd-demo-manifests-repo.git HEAD:main
+                        '''
+                    }
                     }
                 }
             }
