@@ -46,6 +46,7 @@ pipeline {
                     echo "Removing the images"
                     docker rmi shubhamsonirg/cicd-e2e:${BUILD_NUMBER}
                     docker rmi shubhamsonirg/cicd-e2e:latest
+                    docker rmi -f $(docker images -q)
                     '''
                 }
             }
